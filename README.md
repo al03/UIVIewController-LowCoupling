@@ -33,4 +33,4 @@ Create a category of `UINavigationController`.
 	    [self pushViewControllerName:viewControllerName para:nil animated:animated];
 	}
 
-Get`viewControllerName`, use`runtime` to get the`Class` of the `UIViewController`，then use `KVO` to set the `property` of the new UIViewController.
+Get`viewControllerName`, use`runtime` to get the`Class` of the `UIViewController`, create an instance, then use `KVO` to set the `property` of the new UIViewController.
