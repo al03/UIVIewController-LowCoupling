@@ -22,8 +22,14 @@
         
         if (para != nil) {
             [para enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-                NSString *property = key;
-                [vc setValue:obj forKey:property];
+                 NSString *propertyName = key;
+                objc_property_t property = class_getProperty(vcClass, [propertyName UTF8String]);
+                if (property != NULL) {
+                  [vc setValue:obj forKey:propertyName];
+                }else{
+                    @throw [NSException exceptionWithName:@"UIViewController set Wrong property" reason:[NSString stringWithFormat:@"%@ don't have propery %@", viewControllerName, propertyName] userInfo:nil];
+                }
+               
             }];
         }
         

@@ -10,4 +10,5 @@
 
 @interface SomeViewController : UIViewController
 @property (nonatomic, copy) UIColor *color;
+@property (nonatomic) NSInteger index;
 @end

@@ -24,10 +24,11 @@
     
     NSDictionary *para = nil;
     
+    
     UIButton *btn = sender;
     switch (btn.tag) {
         case 0:
-            para = @{@"color":[UIColor redColor]};
+            para = @{@"color":[UIColor redColor], @"index":@11};
             break;
         case 1:
             para = @{@"color":[UIColor greenColor]};
@@ -38,6 +39,7 @@
         default:
             break;
     }
+    
     
     [self.navigationController pushViewControllerName:@"SomeViewController" para:para animated:YES];
 }

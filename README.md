@@ -11,7 +11,6 @@ Create a category of `UINavigationController`.
 
 	- (void)pushViewControllerName:(NSString *)viewControllerName para:(NSDictionary *)para animated:(BOOL)animated
 	{
-	   
 	    const char *name = [viewControllerName UTF8String];
 	    Class vcClass = objc_getClass(name);
 	    if (vcClass != NULL) {
@@ -19,18 +18,25 @@ Create a category of `UINavigationController`.
 	        
 	        if (para != nil) {
 	            [para enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-	                NSString *property = key;
-	                [vc setValue:obj forKey:property];
+	                 NSString *propertyName = key;
+	                objc_property_t property = class_getProperty(vcClass, [propertyName UTF8String]);
+	                if (property != NULL) {
+	                  [vc setValue:obj forKey:propertyName];
+	                }else{
+	                    @throw [NSException exceptionWithName:@"UIViewController set Wrong property" reason:[NSString stringWithFormat:@"%@ don't have property %@", viewControllerName, propertyName] userInfo:nil];
+	                }
+	               
 	            }];
 	        }
 	        
-	        [self pushViewController:vc animated: animated];
+	        [self pushViewController:vc animated:YES];
 	    }
 	}
+
 
 	- (void)pushViewControllerName:(NSString *)viewControllerName animated:(BOOL)animated
 	{
 	    [self pushViewControllerName:viewControllerName para:nil animated:animated];
 	}
 
-Get`viewControllerName`, use`runtime` to get the`Class` of the `UIViewController`, create an instance, then use `KVO` to set the `property` of the new UIViewController.
+Get`viewControllerName`, use`runtime` to get the`Class` of the `UIViewController`, create an instance, detect the property, then use `KVO` to set the `property` of the new UIViewController.
