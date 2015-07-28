@@ -1,6 +1,6 @@
 # Xcode
-#
-build/
+.DS_Store
+*/build/*
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -10,17 +10,31 @@ build/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata
-*.xccheckout
+*.xcworkspace
+profile
 *.moved-aside
 DerivedData
+.idea/
 *.hmap
-*.ipa
-*.xcuserstate
+*.lock
+Pods/
 
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
-#
-#Pods/
+
+#OSX Files
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+# Thumbnails
+._*
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# VIM Files
+.*.s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
